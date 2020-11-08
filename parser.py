@@ -3,7 +3,7 @@
 import math as m
 
 global o_t
-o_t = {"+": lambda x, y: x + y, "-": lambda x, y: x - y, "*": lambda x, y: x * y, "/": lambda x, y: x / y}
+o_t = {"+": lambda x, y: x + y, "-": lambda x, y: x - y, "*": lambda x, y: x * y, "/": lambda x, y: x / y, "^": lambda: x, y: x ^ y, "%": lambda x, y: x % y}
 
 def isn(x):
     try:
