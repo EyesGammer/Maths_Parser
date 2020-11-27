@@ -3,7 +3,7 @@
 import math as m
 
 global o_t
-o_t = {"+": lambda x, y: x + y, "-": lambda x, y: x - y, "*": lambda x, y: x * y, "/": lambda x, y: x / y, "^": lambda: x, y: x ^ y, "%": lambda x, y: x % y}
+o_t = {"+": lambda x, y: x + y, "-": lambda x, y: x - y, "*": lambda x, y: x * y, "/": lambda x, y: x / y, "^": lambda x, y: x ^ y, "%": lambda x, y: x % y, "**": lambda x, y: x ** y}
 
 def isn(x):
     try:
@@ -24,11 +24,12 @@ def diff(a, b, c=[]):
     return diff(a, b[:i] + a[i] + b[i:], c)
 
 def parser(s, v={}):
-    o, n, f, oi, fi, nf = ["+", "-", "*", "/"], [], [], {}, [], []
+    o, n, f, oi, fi, nf = ["+", "-", "*", "**", "/", "^", "%"], [], [], {}, [], []
     def operators(a, b, t=""):
         if b == -1:
             return a
         t = "".join(a) if t == "" else t
+        print(o[b])
         n = [y for x in [x.split(o[b]) for x in t] for y in x]
         oi[o[b]], tmp = diff(t, "".join(n), [])
         return operators(n, b - 1, tmp)
@@ -78,7 +79,8 @@ def calculator(a):
         if d != "":
             b = o_t.get(d)(b, tmp)
         return main(a, b, c + 2, h)
-    return main(n, res, -1)
+    #return main(n, res, -1)
 
-t = parser("2*2", {})
+t = parser("1+2*3", {})
 print(calculator(t))
+print("Test")
